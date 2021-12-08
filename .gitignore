@@ -3,4 +3,5 @@ venv
 git
 market_dajngo/mai_cache
 market_dajngo/media/*
-/market_dajngo/media/
+market_dajngo/__pycache__/
+market_dajngo/mainapp/__pycache__/
