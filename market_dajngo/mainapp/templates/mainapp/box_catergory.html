@@ -1,0 +1,38 @@
+<div class="category">
+
+    <div style="margin-right: 30px">
+
+        Все категории
+
+    </div>
+    <p></p>
+    <div class="body_category">
+
+        <label>
+            <select name="selectd" size="4" onchange="location = this.value;">
+
+                {% for l_c in list_category %}
+
+                    {% if l_c.id == select_id_category %}
+                        <option selected="selected" value="?page=1&RequestCategory={{ l_c.id }}">
+                            {{ l_c.name_cate }} ({{ l_c.cout_cate }})
+                        </option>
+
+                    {% else %}
+                        <option value="?page=1&RequestCategory={{ l_c.id }}">
+                            {{ l_c.name_cate }} ({{ l_c.cout_cate }})
+                        </option>
+
+                    {% endif %}
+
+                {% endfor %}
+            </select>
+        </label>
+        <p></p>
+        <div style="margin-right: 50px">
+            <a href="{% url 'main_lenta_product' %}?page=1">
+                Все товары
+            </a>
+        </div>
+    </div>
+</div>

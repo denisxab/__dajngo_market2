@@ -1,0 +1,18 @@
+{% extends "mainapp/main.html" %}
+{% block BODY %}
+    {{ block.super }}
+
+    <div style="margin: 0 0 30px 15px ">
+        {% include  "mainapp/box_catergory.html" %}
+        {% include  "mainapp/box_search.html" %}
+        {% include  "mainapp/box_basker_info.html" %}
+    </div>
+
+    <div>
+        {% include  "mainapp/box_product.html" %}
+    </div>
+
+    <div class="pagination">
+        {% include  "mainapp/box_paginator.html" %}
+    </div>
+{% endblock BODY %}

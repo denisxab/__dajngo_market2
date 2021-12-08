@@ -1,0 +1,6 @@
+venv
+.idea
+git
+market_dajngo/mai_cache
+market_dajngo/media/*
+/market_dajngo/media/

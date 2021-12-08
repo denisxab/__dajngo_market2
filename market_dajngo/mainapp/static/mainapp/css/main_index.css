@@ -1,0 +1,21 @@
+:root {
+    --ThreeBg: #000000;
+    --TwoBg: #12;
+    --OneBg: #fff478;
+    --OneColorText: #000000;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background: rgba(25, 25, 25, 0.15);
+
+}
+
+.box_body {
+    border: #353b3b solid 4px;
+    min-height: 1920px;
+    padding: 30px;
+}

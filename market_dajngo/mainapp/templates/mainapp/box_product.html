@@ -1,0 +1,28 @@
+{% load main_tag %}
+{% for it_product in products %}
+    <div class="box_product">
+
+        {# Имя товра #}
+        <a href="{% url 'detail_product' it_product.id %}">{{ it_product.name }}</a>
+        <br>
+        {# Цена товара #}
+        {{ it_product.price }} руб
+
+        {# Изображения товара #}
+        <div class="image">
+            {% for it_photo in it_product.array_path_photo %}
+                <img src="{% UrlMedia it_photo %}" style='object-fit: contain;' width=150 height=150 alt="">
+            {% endfor %}
+        </div>
+
+
+        {# Кнопка в добовления товара в корзину #}
+        <form class="AddProductInBasket"
+              csrfmiddlewaretoken="{{ csrf_token }}"
+              id_product={{ it_product.id }}>
+            <input type="submit" value="В корзину +">
+        </form>
+
+    </div>
+{% endfor %}
+

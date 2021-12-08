@@ -1,0 +1,36 @@
+# Взять за основу образ `python`
+FROM python:3.9
+
+# Получем аргумент из `docker-compose.yml` (путь рабочей деректории)
+ARG WORK_DIR
+# Отобразить путь к консоле дабы убедиться в существавание Аргумента
+RUN echo $WORK_DIR
+# Создать робочую деректроию проекта
+WORKDIR $WORK_DIR
+
+
+# Не создавать папку `.pyc` для кеширование байт кода
+ENV PYTHONDONTWRITEBYTECODE=1
+# Не кешировать вывод из консоли
+ENV PYTHONUNBUFFERED=1
+
+
+# Скопировать файл зависемсотие в рабочую деректроию
+COPY requirements.txt .
+# Обновить `pip`
+RUN pip install --upgrade pip
+# Установить зависемости из файла
+RUN pip install -r requirements.txt
+
+# Скопировать файл со скриптами запска
+COPY entrypoint.sh .
+# Разрешить исполнять скрипты
+RUN chmod +x entrypoint.sh
+
+
+# Скопировать весь проект в робочию дерикторию
+COPY . .
+
+# Выполнить скрипт при запуске контейнера
+ENTRYPOINT sh ${WORK_DIR}/entrypoint.sh
+

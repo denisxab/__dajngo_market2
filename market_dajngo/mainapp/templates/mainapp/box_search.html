@@ -1,0 +1,17 @@
+<div class="search_box"
+     style="
+             margin: 0 30px 0 0;">
+    <form method="get" name="SearchForm"
+          action=""
+          accept-charset="UTF-8"
+          autocomplete="on"
+          target="_self"
+          enctype="application/x-www-form-urlencoded">
+        {% csrf_token %}
+        <label>
+            <input type="text" name="RequestSearchText" value="{{ query_search }}" size="40">
+            <input type="hidden" name="page" value="{{ page_obj.number }}">
+            <input type="submit" value="Поиск">
+        </label>
+    </form>
+</div>

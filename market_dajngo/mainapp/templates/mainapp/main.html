@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лента товаров</title>
+
+    {# CSS #}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="{% static 'mainapp/css/main_index.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'mainapp/css/paginator.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'mainapp/css/product.css' %}" rel="stylesheet" type="text/css">
+
+    {# END CSS #}
+
+
+    {# JS #}
+    {# Константные значения для JS#}
+    <script>
+		{# Url сервера который обрабатывает запросы работы корзины#}
+		const UrlBasketServer = "{% url 'basket_server' %}";
+    </script>
+    {# jQuery #}
+    <script src="{% static 'mainapp/js/jquery-3.6.0.min.js' %} " type="text/javascript"></script>
+    {# Корзина JS #}
+    <script src="{% static 'mainapp/js/basket.js' %} " type="text/javascript"></script>
+    {# END JS #}
+
+
+</head>
+<body>
+
+<div style="margin: 20px">
+    <div style="display: inline;margin-right: 30px">
+        <a href="{% url 'main_lenta_product' %}">Главная Лента</a>
+    </div>
+    <div style="display: inline;margin-right: 30px">
+        <a href="{% url 'basket' %}">Моя Корзина</a>
+    </div>
+</div>
+
+<div class="box_body">
+    {% block BODY %}
+    {% endblock BODY %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+{% extends "mainapp/main.html" %}
+{% load main_tag %}
+
+{% block BODY %}
+    {{ block.super }}
+
+
+    {% if basket %}
+
+        {% for product in basket %}
+            <div class="box_product" id="{{ product.id }}">
+                <div>
+                    {{ product.name }}<br>
+
+                    Колличество <span id="{{ product.id }}-span">{{ product.count_basket_product }}</span>
+
+                    <br>
+
+                    <div class="image">
+                        {% for img in product.array_path_photo %}
+                            <img src="{% UrlMedia img %}" style='object-fit: contain;' width=150 height=150 alt="">
+                        {% endfor %}
+                    </div>
+                </div>
+                {# Кнопка в добовления товара в корзину #}
+                <form class="DeleteProductInBasket"
+                      csrfmiddlewaretoken="{{ csrf_token }}"
+                      id_product={{ product.id }}>
+                    <input style="background: indianred;border-radius: 30px; padding: 6px" type="submit"
+                           value="Удалить товар из корзины">
+                </form>
+            </div>
+        {% endfor %}
+
+    {% else %}
+        Корзина пуста
+
+    {% endif %}
+
+
+
+
+
+
+
+{% endblock BODY %}
+

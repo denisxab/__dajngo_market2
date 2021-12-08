@@ -1,0 +1,67 @@
+<!--
+Нужен:
+    - page_obj = Объект пагинатор
+	- href_page = Добавить get запрос
+-->
+
+
+{#{{ page_obj }} <br>#}
+{# Если есть хотя бы больше одной страницы#}
+{% if page_obj.has_other_pages %}
+
+
+
+    {# Добавить кнопки перемещения страниц назад#}
+    {% if page_obj.has_previous %}
+        {# Первая страница #}
+        <a href="?page=1{{ href_page }}">
+            <div class="offer-page">
+                1
+            </div>
+        </a>
+
+
+        <a href="?page={{ page_obj.previous_page_number }}{{ href_page }}">
+            <div class="offer-page">
+                &lt;
+            </div>
+        </a>
+    {% endif %}
+
+
+    {% for p in page_obj.page_range %}
+        {# Выделеть выбранную страницу #}
+        {% if page_obj.number == p %}
+            <span>
+                <div class="offer-page select-offer-page">
+                    {{ p }}
+                </div>
+            </span>
+
+            {# Не отображать страницы более N страниц #}
+
+        {% elif p >= page_obj.number|add:page_obj.max_offer_page.0 and p <= page_obj.number|add:page_obj.max_offer_page.1 %}
+            <a href="?page={{ p }}{{ href_page }}">
+                <div class="offer-page">
+                    {{ p }}
+                </div>
+            </a>
+
+        {% endif %}
+    {% endfor %}
+
+    {# Добавить кнопки перемещения страниц вперед#}
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}{{ href_page }}">
+            <div class="offer-page">
+                &gt;
+            </div>
+        </a>
+        {# Последняя страница #}
+        <a href="?page={{ page_obj.num_pages }}{{ href_page }}">
+            <div class="offer-page">
+                {{ page_obj.num_pages }}
+            </div>
+        </a>
+    {% endif %}
+{% endif %}
